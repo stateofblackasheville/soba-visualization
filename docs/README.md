@@ -60,15 +60,15 @@ Used for both Google Spreadsheet and GraphQL Modes
 - **summaryText**: 
 
 ## Google Spreadsheet
-- spreadsheetId={this.props.spreadsheetId}
-- spreadsheetChartColumns={this.props.spreadsheetChartColumns}
+- **spreadsheetId:**  ID of the Google Spreadsheet, from the URL (like https://docs.google.com/spreadsheets/d/**1_oMYZp3DnkDUzp4qC31q5KisnXU0YnOzTg_gwi2XbME**)
+- **spreadsheetChartColumns:** ['A','B'] Columns to display (defaults to showing all) 
 
 ## GraphQL
-- **dataset:** {this.props.dataset}
-- count={this.props.count}
-- byDate={this.props.byDate}
-- groupBy={this.props.groupBy}
-- filters={this.props.filters}
+- **dataset:** 
+- **count:**
+- **byDate:**
+- **groupBy:**
+- **filters:**
 ```
 
 ## Demo
