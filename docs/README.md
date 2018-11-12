@@ -8,7 +8,7 @@ This library helps you visualize data stored in either:
 
 Learn more about our GraphQL endpoint [here]. 
 
-```
+```html
 <script type='text/javascript' src='https://unpkg.com/react@16/umd/react.production.min.js?v=1.1.2'></script>
 <script type='text/javascript' src='https://unpkg.com/react-dom@16.6.0/umd/react-dom.production.min.js'></script>
 <script type='text/javascript' src='https://unpkg.com/soba-visualization@latest/umd/soba-visualization.min.js?v=1.1.2'></script>
@@ -16,7 +16,7 @@ Learn more about our GraphQL endpoint [here].
 
 ```
 
-```
+```html
 <div 
   class='soba-visualization' 
   data-title='Traffic Stops by Race'
