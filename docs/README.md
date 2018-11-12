@@ -51,9 +51,9 @@ Note - this also includes some jQuery we use to bring HTML markup into React
 ## Common
 Used for both Google Spreadsheet and GraphQL Modes
 
-- **title:** Title of the Chart
-- **chartType:** ['Line', 'Bar']
-- **showChartTypeSelect:** 
+- **title:** *String* Title of the Chart
+- **chartType:** *Array[String]* ['Line', 'Bar']
+- **showChartTypeSelect:** *true/false* Whether to show the chart-type select dropdown
 - **datasetLabels**: 
 - **labelX**: 
 - **labelY**: 
