@@ -53,6 +53,7 @@ Used for both Google Spreadsheet and GraphQL Modes
 
 - **title:** *String* 
 Title of the Chart
+
 - **chartType:** *Array[String]* 
 ['Line', 'Bar']
 - **showChartTypeSelect:** *true/false* 
@@ -63,7 +64,7 @@ Whether to show the chart-type select dropdown
 - **summaryText**: 
 
 ## Google Spreadsheet
-- **spreadsheetId:**  
+- **spreadsheetId:** 
 ID of the Google Spreadsheet, from the URL:
 **1_oMYZp3DnkDUzp4qC31q5KisnXU0YnOzTg_gwi2XbME**
 - **spreadsheetChartColumns:** ['A','B'] Columns to display (defaults to showing all) 
