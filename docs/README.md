@@ -44,7 +44,8 @@ Note - this also includes some jQuery we use to bring HTML markup into React
 
 # Options
 
-- title={this.props.title}
+- title
+-- Test123
 - chartType={this.props.chartType}
 - dataset={this.props.dataset}
 - count={this.props.count}
