@@ -3,10 +3,13 @@
 
 @import "{{ site.theme }}";
 
+.page-header{
+	background-color: rgba(0,0,0,0.5);
+	background-image: none;
+}
 
 .page-header::after{
   content: "";
-  opacity: 0.5;
   top: 0;
   left: 0;
   bottom: 0;
