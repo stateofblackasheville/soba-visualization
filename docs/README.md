@@ -44,7 +44,7 @@ Note - this also includes some jQuery we use to bring HTML markup into React
 # Options
 
 - *title:* Title of the Chart
-- chartType={this.props.chartType}
+- *chartType:* ['Line', 'Bar']
 - dataset={this.props.dataset}
 - count={this.props.count}
 - byDate={this.props.byDate}
