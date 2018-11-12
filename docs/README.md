@@ -51,7 +51,7 @@ Note - this also includes some jQuery we use to bring HTML markup into React
 ## Common
 Used for both Google Spreadsheet and GraphQL Modes
 
-- **title:** *String* 
+- **title** *(String)* :  
 Title of the Chart
 - **chartType:** *Array[String]* 
 ['Line', 'Bar']
