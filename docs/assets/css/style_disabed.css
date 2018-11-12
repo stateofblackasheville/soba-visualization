@@ -1,9 +1,0 @@
----
----
-
-@import "{{ site.theme }}";
-
-
-.page-header{
-	background: url(https://www.stateofblackasheville.com/wp-content/uploads/2018/10/Screen-Shot-2018-04-24-at-3.58.44-PM-2.png);
-}
