@@ -63,7 +63,8 @@ Whether to show the chart-type select dropdown
 
 ## Google Spreadsheet
 - **spreadsheetId:**  
-ID of the Google Spreadsheet, from the URL (like https://docs.google.com/spreadsheets/d/**1_oMYZp3DnkDUzp4qC31q5KisnXU0YnOzTg_gwi2XbME**)
+ID of the Google Spreadsheet, from the URL
+https://docs.google.com/spreadsheets/d/**1_oMYZp3DnkDUzp4qC31q5KisnXU0YnOzTg_gwi2XbME**
 - **spreadsheetChartColumns:** ['A','B'] Columns to display (defaults to showing all) 
 
 ## GraphQL
