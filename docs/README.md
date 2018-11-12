@@ -10,6 +10,9 @@ Learn more about our GraphQL endpoint [here].
 
 # Installation
 
+## Get some data
+It will probably be easier to work through this with some data. Make a Google Docs spreadsheet with your information, like [this]
+
 ## Install React
 First things first - make sure you have React and React DOM installed on your site
 
