@@ -60,7 +60,8 @@ Used for both Google Spreadsheet and GraphQL Modes
 - **summaryText**: 
 
 ## Google Spreadsheet
-- **spreadsheetId:**  ID of the Google Spreadsheet, from the URL (like https://docs.google.com/spreadsheets/d/**1_oMYZp3DnkDUzp4qC31q5KisnXU0YnOzTg_gwi2XbME**)
+- **spreadsheetId:**  
+ID of the Google Spreadsheet, from the URL (like https://docs.google.com/spreadsheets/d/**1_oMYZp3DnkDUzp4qC31q5KisnXU0YnOzTg_gwi2XbME**)
 - **spreadsheetChartColumns:** ['A','B'] Columns to display (defaults to showing all) 
 
 ## GraphQL
