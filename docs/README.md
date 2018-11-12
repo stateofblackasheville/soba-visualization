@@ -54,7 +54,7 @@ Used for both Google Spreadsheet and GraphQL Modes
 - **title** *(String)* :  
 Title of the Chart
 - **chartType** *(Array[String])* :  
-['Line', 'Bar']
+['Line', 'Bar'] - Which chart types to display. 
 - **showChartTypeSelect:** *true/false* 
 Whether to show the chart-type select dropdown
 - **datasetLabels**: 
