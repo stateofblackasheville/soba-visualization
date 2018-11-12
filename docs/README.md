@@ -52,12 +52,12 @@ Note - this also includes some jQuery we use to bring HTML markup into React
 Used for both Google Spreadsheet and GraphQL Modes
 
 - **title:** Title of the Chart
-- *chartType:** ['Line', 'Bar']
+- **chartType:** ['Line', 'Bar']
 - **showChartTypeSelect:** 
-- datasetLabels={this.props.datasetLabels}
-- labelX={this.props.labelX}
-- labelY={this.props.labelY}
-- summaryText={this.props.summaryText}
+- **datasetLabels**: 
+- **labelX**: 
+- **labelY**: 
+- **summaryText**: 
 
 ## Google Spreadsheet
 - spreadsheetId={this.props.spreadsheetId}
