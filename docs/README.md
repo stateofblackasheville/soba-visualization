@@ -51,7 +51,7 @@ Used for both Google Spreadsheet and GraphQL Modes
 
 - **title:** Title of the Chart
 - *chartType:** ['Line', 'Bar']
-- showChartTypeSelect={this.props.showChartTypeSelect}
+- **showChartTypeSelect:** 
 - datasetLabels={this.props.datasetLabels}
 - labelX={this.props.labelX}
 - labelY={this.props.labelY}
