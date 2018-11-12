@@ -46,20 +46,27 @@ Note - this also includes some jQuery we use to bring HTML markup into React
 
 # Options
 
-- _title:_ Title of the Chart
-- *chartType:* ['Line', 'Bar']
-- dataset={this.props.dataset}
-- count={this.props.count}
-- byDate={this.props.byDate}
-- groupBy={this.props.groupBy}
-- filters={this.props.filters}
-- spreadsheetId={this.props.spreadsheetId}
-- spreadsheetChartColumns={this.props.spreadsheetChartColumns}
+## Common
+Used for both Google Spreadsheet and GraphQL Modes
+
+- **title:** Title of the Chart
+- *chartType:** ['Line', 'Bar']
 - showChartTypeSelect={this.props.showChartTypeSelect}
 - datasetLabels={this.props.datasetLabels}
 - labelX={this.props.labelX}
 - labelY={this.props.labelY}
 - summaryText={this.props.summaryText}
+
+## Google Spreadsheet
+- spreadsheetId={this.props.spreadsheetId}
+- spreadsheetChartColumns={this.props.spreadsheetChartColumns}
+
+## GraphQL
+- **dataset:** {this.props.dataset}
+- count={this.props.count}
+- byDate={this.props.byDate}
+- groupBy={this.props.groupBy}
+- filters={this.props.filters}
 ```
 
 ## Demo
