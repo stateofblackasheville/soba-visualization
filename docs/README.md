@@ -74,6 +74,5 @@ ID of the Google Spreadsheet, from the URL:
 - **byDate:**
 - **groupBy:**
 - **filters:**
-```
 
 ## Demo
