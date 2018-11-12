@@ -53,27 +53,37 @@ Used for both Google Spreadsheet and GraphQL Modes
 
 - **title** *(String)* :  
 Title of the Chart
+
 - **chartType** *(Array[String])* :  
 ['Line', 'Bar'] - Which chart types to display. 
 
 - **showChartTypeSelect:** *true/false* 
 Whether to show the chart-type select dropdown
+
 - **datasetLabels**: 
+
 - **labelX**: 
+
 - **labelY**: 
+
 - **summaryText**: 
 
 ## Google Spreadsheet
 - **spreadsheetId:** 
 ID of the Google Spreadsheet, from the URL:
 **1_oMYZp3DnkDUzp4qC31q5KisnXU0YnOzTg_gwi2XbME**
+
 - **spreadsheetChartColumns:** ['A','B'] Columns to display (defaults to showing all) 
 
 ## GraphQL
 - **dataset:** 
+
 - **count:**
+
 - **byDate:**
+
 - **groupBy:**
+
 - **filters:**
 
 # Demo
