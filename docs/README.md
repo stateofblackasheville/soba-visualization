@@ -26,7 +26,6 @@ Note - this also includes some jQuery we use to bring HTML markup into React
 ```html
 <script type='text/javascript' src='https://unpkg.com/soba-visualization@latest/umd/soba-visualization.min.js?v=1.1.2'></script>
 <script type='text/javascript' src='https://www.stateofblackasheville.com/wp-content/themes/sage-8.5.4/dist/scripts/visualization.js?v=1.1.2'></script>
-
 ```
 
 ## Finally, add some visualizations anywhere on the page
@@ -44,8 +43,7 @@ Note - this also includes some jQuery we use to bring HTML markup into React
 
 # Options
 
-- title
--- Test123
+- *title:* Title of the Chart
 - chartType={this.props.chartType}
 - dataset={this.props.dataset}
 - count={this.props.count}
