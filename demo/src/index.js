@@ -87,13 +87,24 @@ class Demo extends Component {
 
     return (
       <div>
-        <h1>soba-visualization Demo</h1>
+        <h2>State of Black Asheville Visualization Demo</h2>
         <div className="soba-visualization-demo">
           <div className="soba-visualization">
-
+            <Example
+              title="APD Traffic Searches by Race, 2018"
+              chartType="line"
+              dataset="coa_apd_traffic_stop_name_data_table"
+              count="traffic_stop_id"
+              byDate='["month"]'
+              groupBy='["name_race", "no_contraband_found"]'
+              filters={filterObj2}
+              datasetLabels={datasetLabels}
+              labelX="Month"
+              labelY="Number of searches"
+            />
             <Example
               title="Spreadsheet Demo"
-              spreadsheetId="12qre_cH6oN4IGKe4GDpeXFyCOenlGUbUS878k71yT7E"
+              spreadsheetId="1_oMYZp3DnkDUzp4qC31q5KisnXU0YnOzTg_gwi2XbME"
               chartType="bar"
               showChartTypeSelect="1"
             // spreadsheetChartColumns={['s','t']}
@@ -113,19 +124,6 @@ class Demo extends Component {
       </div>
     );
   }
-
-  // <Example
-  //             title="APD Traffic Searches by Race, 2018"
-  //             chartType="line"
-  //             dataset="coa_apd_traffic_stop_name_data_table"
-  //             count="traffic_stop_id"
-  //             byDate='["month"]'
-  //             groupBy='["name_race", "no_contraband_found"]'
-  //             filters={filterObj2}
-  //             datasetLabels={datasetLabels}
-  //             labelX="Month"
-  //             labelY="Number of searches"
-  //           />
 
 
   // <Example
