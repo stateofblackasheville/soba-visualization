@@ -8,13 +8,6 @@ import {
   Tab, Tabs, TabList, TabPanel,
 } from 'react-tabs';
 
-const reactStringReplace = require('react-string-replace')
-
-
-const API_KEY = 'AIzaSyC7rROXbT3W8IP4gs0oMtDGxumkMF4CFXo';
-
-var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-
 
 // import { drive_v3 } from 'googleapis';
 // import { GoogleSheets } from 'google-drive-sheets';
@@ -24,6 +17,13 @@ var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p",
 import SobaTable from './SobaTable';
 
 import '../css/SobaVisualization.css';
+
+const reactStringReplace = require('react-string-replace')
+
+
+const API_KEY = 'AIzaSyC7rROXbT3W8IP4gs0oMtDGxumkMF4CFXo';
+
+var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 
 // PRC TEMP
 
@@ -84,7 +84,7 @@ const query = `query generic_stats($dataset: String!, $fields: [GenericStatsAggr
   }
 }`;
 
-const chartColors = ['rgba(27,158,119, 0.8)','rgba(217,95,2, 0.8)','rgb(117,112,179)','rgb(231,41,138)','rgb(102,166,30)','rgb(230,171,2)'];
+const chartColors = ['rgba(27,158,119, 0.8)', 'rgba(217,95,2, 0.8)', 'rgb(117,112,179)', 'rgb(231,41,138)', 'rgb(102,166,30)', 'rgb(230,171,2)'];
 
 class SobaVisualization extends Component {
   constructor(props) {
@@ -106,6 +106,7 @@ class SobaVisualization extends Component {
       chartType: 'line',
       dataMode: 'graphql',
       spreadsheetID: false,
+      spreadsheetRange: "A:Z",
       showChartTypeSelect: true,
       gapiReady: false,
       datasetLabels: false,
@@ -116,9 +117,9 @@ class SobaVisualization extends Component {
     };
 
     const {
-      count, dataset, byDate, chartType, groupBy, spreadsheetId, spreadsheetChartColumns,
+      count, dataset, byDate, chartType, groupBy, spreadsheetId, spreadsheetRange, spreadsheetChartColumns,
       showChartTypeSelect, filters,
-      datasetLabels, labelX, labelY, summaryText, activeRowIndex
+      datasetLabels, labelX, labelY, summaryText, activeRowIndex,
     } = props;
 
     this.state.count = count;
@@ -129,6 +130,7 @@ class SobaVisualization extends Component {
     this.state.groupBy = groupBy;
     this.state.groupByText = groupBy;
     this.state.spreadsheetID = spreadsheetId;
+    this.state.spreadsheetRange = spreadsheetRange;
     this.state.filters = filters;
     this.state.datasetLabels = datasetLabels;
     this.state.labelX = labelX;
@@ -149,10 +151,10 @@ class SobaVisualization extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  // PRC - Clean this up! 
+  // PRC - Clean this up!
   loadGoogleAPI() {
-    const script = document.createElement("script");
-    script.src = "https://apis.google.com/js/client.js";
+    const script = document.createElement('script');
+    script.src = 'https://apis.google.com/js/client.js';
 
     const obj = this;
 
@@ -201,16 +203,20 @@ class SobaVisualization extends Component {
       // console.log('gapi', gapi);
 
       const {  spreadsheetID } = this.state;
+      let {  spreadsheetRange } = this.state;
       // ID of the Google Spreadsheet
       // const spreadsheetID = '1oyMRNYXrTCBLXh0166zN432k7Pg7TIvu5FrEa8znjQ4';
       const url = 'https://spreadsheets.google.com/feeds/list/' + spreadsheetID + '/od6/public/values?alt=json';
 
+      if(! spreadsheetRange){
+        spreadsheetRange = "A:Z";
+      }
       const params = {
         // The ID of the spreadsheet to retrieve data from.
         spreadsheetId: spreadsheetID,  // TODO: Update placeholder value.
 
         // The A1 notation of the values to retrieve.
-        range: 'A:Z',  // TODO: Update placeholder value.
+        range: spreadsheetRange,  // TODO: Update placeholder value.
       };
 
       var request = gapi.client.sheets.spreadsheets.values.get(params);
@@ -245,7 +251,7 @@ class SobaVisualization extends Component {
       });
 
       return true;
-    } else {
+    } 
       const {
         dataset, count, dateField, byDateText, groupByText, filters
       } = this.state;
@@ -330,7 +336,7 @@ class SobaVisualization extends Component {
             });
           }
         });
-    }
+    
 
 
   }
@@ -353,17 +359,17 @@ class SobaVisualization extends Component {
     const chartDatasets = [];
 
     // First row is headers
-    let firstRow = data.shift(); 
+    let firstRow = data.shift();
 
     const yearLabel = firstRow.shift();
 
-    if(this.state.spreadsheetChartColumns){
-      this.state.spreadsheetChartColumns = this.state.spreadsheetChartColumns.map(row => alphabet.indexOf(row)-1 );
+    if (this.state.spreadsheetChartColumns) {
+      this.state.spreadsheetChartColumns = this.state.spreadsheetChartColumns.map(row => alphabet.indexOf(row) - 1);
     }
 
     if (this.state.spreadsheetChartColumns) {
       firstRow = firstRow.filter(
-        (value,index) => this.state.spreadsheetChartColumns.indexOf(index) !== -1
+        (value, index) => this.state.spreadsheetChartColumns.indexOf(index) !== -1,
       );
     }
 
@@ -399,12 +405,12 @@ class SobaVisualization extends Component {
       tableRow.subitems = [];
 
       if (this.state.spreadsheetChartColumns) {
-        value_array = value_array.filter((value,index) => this.state.spreadsheetChartColumns.indexOf(index) !== -1);
+        value_array = value_array.filter((value, index) => this.state.spreadsheetChartColumns.indexOf(index) !== -1);
       }
 
       value_array.forEach((value, dataSetIndex) => {
         // Cleanup values and parse
-        value = parseFloat(value.replace(',',''));
+        value = parseFloat(value.replace(',', ''));
 
         chartDatasets[dataSetIndex].data[columnIndex] = value;
 
@@ -420,19 +426,17 @@ class SobaVisualization extends Component {
     // console.log('data', chartDatasets);
     // console.log('table', tableData);
 
-    if(! this.state.activeRowIndex){
-      this.state.activeRowIndex = data.length-1;
+    if (!this.state.activeRowIndex) {
+      this.state.activeRowIndex = data.length - 1;
     }
-    if(data.length){
-
-
+    if (data.length) {
       this.setState({ activeRow: data[this.state.activeRowIndex] });
-      this.setState({ activeRowData: data }); 
-      this.setState({ chartLabels: chartLabels }); 
+      this.setState({ activeRowData: data });
+      this.setState({ chartLabels });
     } else {
       this.setState({ activeRow: false });
-      this.setState({ activeRowData: false});
-      this.setState({ chartLabels: false }); 
+      this.setState({ activeRowData: false });
+      this.setState({ chartLabels: false });
 
     }
 
@@ -522,11 +526,11 @@ class SobaVisualization extends Component {
 
   // eslint-disable-next-line
   processGraphQLForChart(data) {
-    let chartLabels = [];
-    
+    const chartLabels = [];
+
     data.forEach((row) => {
       chartLabels.push(row.groupTitle);
-    });      
+    });
 
     const chartDatasets = [];
     const chartDatasetsLookup = {}; // subitem_label => idnex
@@ -539,8 +543,8 @@ class SobaVisualization extends Component {
           chartDatasetsLookup[lookupKey] = chartDatasets.length;
 
           let datasetLabel = false;
-          if (this.state.datasetLabels && 
-              typeof this.state.datasetLabels[row2.groupTitle.trim()] !== typeof undefined) {
+          if (this.state.datasetLabels 
+              && typeof this.state.datasetLabels[row2.groupTitle.trim()] !== typeof undefined) {
             datasetLabel = this.state.datasetLabels[row2.groupTitle.trim()];
           } else {
             datasetLabel = row2.groupTitle;
@@ -604,7 +608,7 @@ class SobaVisualization extends Component {
 
     const {
       chartType, chartLabels, chartDatasets, loadingChart, items, groupByText, byDateText, count,
-      dateField, errors, dataMode, showChartTypeSelect, spreadsheetID,
+      dateField, errors, dataMode, showChartTypeSelect, spreadsheetID, spreadsheetRange
     } = this.state;
 
     const { title, dataset } = this.props;
@@ -615,12 +619,12 @@ class SobaVisualization extends Component {
       datasets: chartDatasets,
     };
 
-    const formatLabel = function(str, maxwidth){
-        let sections = [];
-        let words = str.split(" ");
-        let temp = "";
+    const formatLabel = function (str, maxwidth) {
+      let sections = [];
+      let words = str.split(' ');
+      let temp = '';
 
-        words.forEach(function(item, index){
+      words.forEach(function(item, index){
             if(temp.length > 0)
             {
                 var concat = temp + ' ' + item;
@@ -635,10 +639,10 @@ class SobaVisualization extends Component {
                         sections.push(concat);
                         return;
                     }
-                    else{
+                    
                         temp = concat;
                         return;
-                    }
+                    
                 }
             }
 
@@ -657,46 +661,46 @@ class SobaVisualization extends Component {
 
         });
 
-        return sections;
-    }
+      return sections;
+    };
 
     const chartOptions = {
-    tooltips: {
-      mode: 'label',
-      callbacks: {
-        label: function(tooltipItem, data) {
-          console.log(data, tooltipItem);
+      tooltips: {
+        mode: 'label',
+        callbacks: {
+          label: function (tooltipItem, data) {
+            console.log(data, tooltipItem);
 
-          var dataset = data.datasets[tooltipItem.datasetIndex];
-          var total = data.datasets.reduce(function(previousValue, currentValue, currentIndex, array) {
+            var dataset = data.datasets[tooltipItem.datasetIndex];
+            var total = data.datasets.reduce((previousValue, currentValue, currentIndex, array) => {
 
             console.log(previousValue.data[tooltipItem.index], currentValue.data[tooltipItem.index]);
             return parseInt(previousValue.data[tooltipItem.index]) + parseInt(currentValue.data[tooltipItem.index]);
 
           });
 
-          console.log(total);
-          var currentValue = dataset.data[tooltipItem.index];
-          var percentage = Math.floor(((currentValue/total) * 100)+0.5);         
-          return dataset.label.trim() + ": " + tooltipItem.yLabel + " (" + percentage + "%)";
-        }
-      }
-    },
+            console.log(total);
+            var currentValue = dataset.data[tooltipItem.index];
+            var percentage = Math.floor(((currentValue / total) * 100) + 0.5);
+            return `${dataset.label.trim()  }: ${  tooltipItem.yLabel  } (${  percentage  }%)`;
+          },
+        },
+      },
       maintainAspectRatio: false,
       scales: {
-        xAxes:[{
-            ticks: {
-                callback: function(value) {
+        xAxes: [{
+          ticks: {
+            callback: function(value) {
                   if(value.length > 10){
                     var test=  formatLabel(value, 20);
                     return test;
                     // return value.substr(0, 10) + "...";//truncate
                   }
-                  else{
+                  
                     return value;
-                  }
+                  
                 },
-            }
+          },
         }],
         yAxes: [
           {
@@ -715,11 +719,11 @@ class SobaVisualization extends Component {
     }
 
     if (byDate && byDate.length) {
-      chartOptions.scales.xAxes[0].scaleLabel = {display: true, labelString: JSON.parse(this.state.byDateText)[0] };
+      chartOptions.scales.xAxes[0].scaleLabel = { display: true, labelString: JSON.parse(this.state.byDateText)[0] };
     }
 
     if (this.state.labelY) {
-      chartOptions.scales.yAxes[0].scaleLabel = {display: true, labelString: this.state.labelY };
+      chartOptions.scales.yAxes[0].scaleLabel = { display: true, labelString: this.state.labelY };
     }
 
     let chart = <Bar data={testData} options={chartOptions} />;
@@ -837,28 +841,26 @@ class SobaVisualization extends Component {
     let summaryPanel = false;
     let summaryTab = false;
 
-    let summaryTextOutput = [];
+    const summaryTextOutput = [];
     if (this.state.summaryText) {
-      let summaryTextHTML = this.state.summaryText;
+      const summaryTextHTML = this.state.summaryText;
 
       if (
-        this.state.activeRowIndex && typeof this.state.activeRowData !== typeof undefined &&
-        typeof this.state.activeRowData[this.state.activeRowIndex] !== typeof undefined) {
+        this.state.activeRowIndex && typeof this.state.activeRowData !== typeof undefined
+        && typeof this.state.activeRowData[this.state.activeRowIndex] !== typeof undefined) {
+        const activeRow = this.state.activeRowData[this.state.activeRowIndex];
 
-        let activeRow = this.state.activeRowData[this.state.activeRowIndex];
+        const labelValue = this.state.chartLabels[this.state.activeRowIndex];
 
-        let labelValue = this.state.chartLabels[this.state.activeRowIndex];
-
-        if(summaryTextHTML.length){
+        if (summaryTextHTML.length) {
           summaryTextHTML.forEach((summaryTextHTMLElm, index) => {
             summaryTextHTMLElm = reactStringReplace(summaryTextHTMLElm, /\(([^)]+)\)/g,
               (match) => {
                 let replaceValue;
 
-                if(match.toLowerCase() == 'a'){
+                if (match.toLowerCase() == 'a') {
                   replaceValue = labelValue;
-                }
-                else{
+                } else {
                   const matchIndex = alphabet.indexOf(match.toLowerCase()) - 1;
                   replaceValue = activeRow[matchIndex];
                 }
@@ -872,12 +874,13 @@ class SobaVisualization extends Component {
       summaryTab = <Tab>Summary</Tab>;
 
       if (this.state.activeRowData) {
-        let optionRows = [];
+        const optionRows = [];
 
-         this.state.chartLabels.forEach((row, index) => {
+        this.state.chartLabels.forEach((row, index) => {
           optionRows.push(<option value={index}>{row}</option>);
         });
-        summaryPanel =  (<div>
+        summaryPanel = (
+<div>
             <select
               name="activeRowIndex"
               value={this.state.activeRowIndex}
@@ -888,14 +891,15 @@ class SobaVisualization extends Component {
             <div className='summary-text'>
               { summaryTextOutput }
             </div>
-          </div>);
-        }
+          </div>
+);
+      }
     }
 
 
     const pStyle = {
       float: 'right',
-      display: 'block'
+      display: 'block',
     };
 
     // Data Tab / Panel
@@ -920,7 +924,7 @@ class SobaVisualization extends Component {
             </a>
             , and you can edit!
           </p>
-          <a href={'https://docs.google.com/spreadsheets/d/' + spreadsheetID}>
+          <a href={`https://docs.google.com/spreadsheets/d/${  spreadsheetID}`}>
             Google Spreadsheet
           </a>
         </TabPanel>);
